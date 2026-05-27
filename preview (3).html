@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StudyHub</title>
+
+  <link rel="stylesheet" href="style.css"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+<style>/* =========================
+   RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#f1f5f9;
+  color:#0f172a;
+  min-height:100vh;
+  display:flex;
+  overflow-x:hidden;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+  width:280px;
+  min-height:100vh;
+  background:linear-gradient(180deg,#2563eb,#1d4ed8,#1e3a8a);
+  padding:30px 22px;
+  color:white;
+  position:sticky;
+  top:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:5px 0 30px rgba(0,0,0,0.15);
+}
+
+.logo h2{
+  font-size:32px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.logo p{
+  opacity:.8;
+  font-size:14px;
+}
+
+nav{
+  margin-top:40px;
+}
+
+.nav-btn{
+  width:100%;
+  border:none;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  padding:16px;
+  border-radius:18px;
+  margin-bottom:16px;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:500;
+  transition:.3s;
+  backdrop-filter:blur(10px);
+}
+
+.nav-btn:hover{
+  transform:translateX(5px);
+  background:rgba(255,255,255,0.18);
+}
+
+.nav-btn.active{
+  background:white;
+  color:#2563eb;
+  font-weight:600;
+}
+
+.sidebar-footer{
+  opacity:.7;
+  font-size:13px;
+  text-align:center;
+  margin-top:40px;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+  flex:1;
+  padding:35px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.main-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:35px;
+  gap:20px;
+}
+
+.main-header h1{
+  font-size:34px;
+  margin-bottom:5px;
+}
+
+.main-header p{
+  color:#64748b;
+}
+
+.header-actions{
+  width:350px;
+}
+
+.header-actions input{
+  width:100%;
+  padding:16px 20px;
+  border:none;
+  border-radius:18px;
+  background:white;
+  box-shadow:0 4px 20px rgba(0,0,0,0.05);
+  font-size:15px;
+  outline:none;
+}
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:25px;
+  margin-bottom:35px;
+}
+
+.card{
+  background:white;
+  padding:28px;
+  border-radius:28px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.06);
+  transition:.3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  width:120px;
+  height:120px;
+  background:rgba(37,99,235,0.08);
+  border-radius:50%;
+  top:-40px;
+  right:-40px;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card h3{
+  margin-bottom:12px;
+  font-size:18px;
+}
+
+.card p{
+  font-size:42px;
+  font-weight:700;
+}
+
+.urgent{
+  background:linear-gradient(135deg,#ef4444,#dc2626);
+  color:white;
+}
+
+/* =========================
+   DASHBOARD GRID
+========================= */
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+  gap:25px;
+}
+
+.dashboard-box{
+  background:white;
+  border-radius:28px;
+  padding:28px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.06);
+}
+
+.box-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.dashboard-box h2{
+  font-size:22px;
+}
+
+.item{
+  padding:18px;
+  border-radius:18px;
+  background:#f8fafc;
+  margin-bottom:15px;
+  transition:.3s;
+}
+
+.item:hover{
+  background:#eff6ff;
+  transform:scale(1.02);
+}
+
+.item strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+/* =========================
+   TOP SECTION
+========================= */
+
+.top-section{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+  gap:20px;
+}
+
+.top-section h1{
+  font-size:30px;
+  margin-bottom:5px;
+}
+
+.top-section p{
+  color:#64748b;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.add-btn{
+  border:none;
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  color:white;
+  padding:15px 24px;
+  border-radius:18px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  transition:.3s;
+  box-shadow:0 8px 20px rgba(37,99,235,0.25);
+}
+
+.add-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 25px rgba(37,99,235,0.35);
+}
+
+/* =========================
+   FILTER BAR
+========================= */
+
+.filter-bar{
+  display:flex;
+  gap:15px;
+  margin-bottom:30px;
+  flex-wrap:wrap;
+}
+
+.filter-bar select{
+  padding:14px 18px;
+  border:none;
+  border-radius:16px;
+  background:white;
+  box-shadow:0 4px 20px rgba(0,0,0,0.05);
+  outline:none;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.materials-grid,
+.tasks-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:25px;
+}
+
+/* =========================
+   MATERIAL CARD
+========================= */
+
+.material-card,
+.task-card{
+  background:white;
+  padding:25px;
+  border-radius:28px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.06);
+  transition:.3s;
+  position:relative;
+}
+
+.material-card:hover,
+.task-card:hover{
+  transform:translateY(-5px);
+}
+
+.material-card h3,
+.task-card h3{
+  margin-bottom:12px;
+  font-size:22px;
+}
+
+.material-card p,
+.task-card p{
+  margin-bottom:10px;
+  color:#475569;
+  line-height:1.5;
+}
+
+/* =========================
+   TAGS
+========================= */
+
+.tag{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:30px;
+  background:#dbeafe;
+  color:#2563eb;
+  font-size:12px;
+  margin-top:12px;
+  margin-right:8px;
+  font-weight:600;
+}
+
+/* =========================
+   PRIORITY
+========================= */
+
+.priority{
+  display:inline-block;
+  margin-top:18px;
+  padding:8px 16px;
+  border-radius:30px;
+  color:white;
+  font-size:13px;
+  font-weight:600;
+}
+
+.baixa{
+  background:#16a34a;
+}
+
+.média{
+  background:#f59e0b;
+}
+
+.alta{
+  background:#dc2626;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,0.6);
+  backdrop-filter:blur(5px);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+  padding:20px;
+}
+
+.modal-content{
+  width:100%;
+  max-width:550px;
+  background:white;
+  border-radius:32px;
+  padding:35px;
+  animation:modalAnimation .3s ease;
+  box-shadow:0 20px 50px rgba(0,0,0,0.2);
+}
+
+@keyframes modalAnimation{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.modal-header{
+  margin-bottom:25px;
+}
+
+.modal-header h2{
+  font-size:28px;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:18px;
+  background:#f8fafc;
+  margin-bottom:18px;
+  outline:none;
+  font-size:15px;
+  transition:.3s;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus,
+.modal-content select:focus{
+  background:#eff6ff;
+  box-shadow:0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.modal-content textarea{
+  min-height:130px;
+  resize:none;
+}
+
+.checkbox-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+  font-size:15px;
+}
+
+.modal-content button{
+  width:100%;
+  border:none;
+  padding:16px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+  font-weight:600;
+  transition:.3s;
+}
+
+.modal-content button:hover{
+  transform:translateY(-2px);
+}
+
+/* =========================
+   PAGES
+========================= */
+
+.page{
+  display:none;
+}
+
+.active-page{
+  display:block;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#e2e8f0;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#2563eb;
+  border-radius:20px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+  body{
+    flex-direction:column;
+  }
+
+  .sidebar{
+    width:100%;
+    min-height:auto;
+    position:relative;
+  }
+
+  .content{
+    padding:20px;
+  }
+
+  .main-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .header-actions{
+    width:100%;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .top-section{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
+
+  .materials-grid,
+  .tasks-grid{
+    grid-template-columns:1fr;
+  }
+
+  .main-header h1{
+    font-size:28px;
+  }
+
+}</style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      <h2>📚 StudyHub</h2>
+      <p>Produtividade Educacional</p>
+    </div>
+
+    <nav>
+
+      <button class="nav-btn active" data-page="dashboard">
+        📊 Dashboard
+      </button>
+
+      <button class="nav-btn" data-page="materiais">
+        📖 Materiais
+      </button>
+
+      <button class="nav-btn" data-page="trabalhos">
+        📝 Trabalhos
+      </button>
+
+      <button class="nav-btn" data-page="favoritos">
+        ⭐ Favoritos
+      </button>
+
+    </nav>
+
+    <div class="sidebar-footer">
+      <p>StudyHub © 2026</p>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+
+  <main class="content">
+
+    <!-- HEADER -->
+
+    <header class="main-header">
+
+      <div>
+        <h1>Bem-vindo ao StudyHub</h1>
+        <p>Organize seus estudos de forma inteligente.</p>
+      </div>
+
+      <div class="header-actions">
+
+        <input
+          type="text"
+          id="search"
+          placeholder="Buscar materiais ou trabalhos..."
+        >
+
+      </div>
+
+    </header>
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard" class="page active-page">
+
+      <div class="cards">
+
+        <div class="card">
+          <h3>📚 Materiais</h3>
+          <p id="materials-count">0</p>
+        </div>
+
+        <div class="card">
+          <h3>📝 Trabalhos</h3>
+          <p id="tasks-count">0</p>
+        </div>
+
+        <div class="card urgent">
+          <h3>⚠️ Urgentes</h3>
+          <p id="urgent-count">0</p>
+        </div>
+
+        <div class="card">
+          <h3>⭐ Favoritos</h3>
+          <p id="favorite-count">0</p>
+        </div>
+
+      </div>
+
+      <div class="dashboard-grid">
+
+        <div class="dashboard-box">
+
+          <div class="box-header">
+            <h2>📅 Próximos Trabalhos</h2>
+          </div>
+
+          <div id="upcoming-tasks"></div>
+
+        </div>
+
+        <div class="dashboard-box">
+
+          <div class="box-header">
+            <h2>⭐ Materiais Favoritos</h2>
+          </div>
+
+          <div id="favorite-materials"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- MATERIAIS -->
+
+    <section id="materiais" class="page">
+
+      <div class="top-section">
+
+        <div>
+          <h1>📖 Materiais de Estudo</h1>
+          <p>Gerencie seus conteúdos acadêmicos.</p>
+        </div>
+
+        <button class="add-btn" id="open-material-modal">
+          + Novo Material
+        </button>
+
+      </div>
+
+      <div class="filter-bar">
+
+        <select>
+          <option>Todas Disciplinas</option>
+          <option>Matemática</option>
+          <option>Programação Web</option>
+          <option>Banco de Dados</option>
+        </select>
+
+        <select>
+          <option>Todos Tipos</option>
+          <option>Resumo</option>
+          <option>Exercício</option>
+          <option>Prova Antiga</option>
+          <option>Anotação</option>
+        </select>
+
+      </div>
+
+      <div class="materials-grid" id="materials-list"></div>
+
+    </section>
+
+    <!-- TRABALHOS -->
+
+    <section id="trabalhos" class="page">
+
+      <div class="top-section">
+
+        <div>
+          <h1>📝 Trabalhos e Tarefas</h1>
+          <p>Controle seus prazos e entregas.</p>
+        </div>
+
+        <button class="add-btn" id="open-task-modal">
+          + Novo Trabalho
+        </button>
+
+      </div>
+
+      <div class="filter-bar">
+
+        <select>
+          <option>Todas Prioridades</option>
+          <option>Alta</option>
+          <option>Média</option>
+          <option>Baixa</option>
+        </select>
+
+        <select>
+          <option>Todos Status</option>
+          <option>Não iniciado</option>
+          <option>Em progresso</option>
+          <option>Concluído</option>
+        </select>
+
+      </div>
+
+      <div class="tasks-grid" id="tasks-list"></div>
+
+    </section>
+
+    <!-- FAVORITOS -->
+
+    <section id="favoritos" class="page">
+
+      <div class="top-section">
+
+        <div>
+          <h1>⭐ Favoritos</h1>
+          <p>Materiais importantes salvos.</p>
+        </div>
+
+      </div>
+
+      <div class="materials-grid" id="favorites-list"></div>
+
+    </section>
+
+  </main>
+
+  <!-- MODAL MATERIAL -->
+
+  <div class="modal" id="material-modal">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h2>📖 Novo Material</h2>
+      </div>
+
+      <input
+        type="text"
+        id="material-title"
+        placeholder="Título do material"
+      >
+
+      <input
+        type="text"
+        id="material-subject"
+        placeholder="Disciplina"
+      >
+
+      <select id="material-type">
+        <option>Resumo</option>
+        <option>Exercício</option>
+        <option>Prova Antiga</option>
+        <option>Anotação</option>
+      </select>
+
+      <input
+        type="text"
+        id="material-tags"
+        placeholder="Tags separadas por vírgula"
+      >
+
+      <label class="checkbox-area">
+
+        <input type="checkbox" id="material-favorite">
+
+        <span>Adicionar aos favoritos</span>
+
+      </label>
+
+      <button id="save-material">
+        Salvar Material
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- MODAL TRABALHO -->
+
+  <div class="modal" id="task-modal">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h2>📝 Novo Trabalho</h2>
+      </div>
+
+      <input
+        type="text"
+        id="task-title"
+        placeholder="Título do trabalho"
+      >
+
+      <textarea
+        id="task-description"
+        placeholder="Descrição da tarefa"
+      ></textarea>
+
+      <input
+        type="text"
+        id="task-subject"
+        placeholder="Disciplina"
+      >
+
+      <input type="date" id="task-date">
+
+      <select id="task-priority">
+        <option>Baixa</option>
+        <option>Média</option>
+        <option>Alta</option>
+      </select>
+
+      <select id="task-status">
+        <option>Não iniciado</option>
+        <option>Em progresso</option>
+        <option>Concluído</option>
+      </select>
+
+      <button id="save-task">
+        Salvar Trabalho
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT -->
+
+  <script src="script.js"></script>
+
+<script>// ===============================
+// STUDYHUB - SCRIPT COMPLETO
+// ===============================
+
+// ===============================
+// ELEMENTOS
+// ===============================
+
+const pages = document.querySelectorAll('.page');
+const navButtons = document.querySelectorAll('.nav-btn');
+
+const materialsList = document.getElementById('materials-list');
+const tasksList = document.getElementById('tasks-list');
+const favoritesList = document.getElementById('favorites-list');
+
+const materialModal = document.getElementById('material-modal');
+const taskModal = document.getElementById('task-modal');
+
+const searchInput = document.getElementById('search');
+
+// DASHBOARD
+
+const materialsCount = document.getElementById('materials-count');
+const tasksCount = document.getElementById('tasks-count');
+const urgentCount = document.getElementById('urgent-count');
+const favoriteCount = document.getElementById('favorite-count');
+
+const upcomingTasks = document.getElementById('upcoming-tasks');
+const favoriteMaterials = document.getElementById('favorite-materials');
+
+// ===============================
+// DADOS INICIAIS
+// ===============================
+
+const defaultMaterials = [
+  {
+    id: 1,
+    title: 'Resumo HTML',
+    subject: 'Programação Web',
+    type: 'Resumo',
+    tags: ['html', 'frontend'],
+    favorite: true,
+    createdAt: new Date().toLocaleDateString()
+  },
+
+  {
+    id: 2,
+    title: 'Exercícios SQL',
+    subject: 'Banco de Dados',
+    type: 'Exercício',
+    tags: ['sql', 'mysql'],
+    favorite: false,
+    createdAt: new Date().toLocaleDateString()
+  },
+
+  {
+    id: 3,
+    title: 'Prova Antiga Matemática',
+    subject: 'Matemática',
+    type: 'Prova Antiga',
+    tags: ['cálculo'],
+    favorite: true,
+    createdAt: new Date().toLocaleDateString()
+  }
+];
+
+const defaultTasks = [
+  {
+    id: 1,
+    title: 'Projeto Final Web',
+    description: 'Finalizar frontend responsivo',
+    subject: 'Programação Web',
+    date: '2026-05-20',
+    priority: 'Alta',
+    status: 'Em progresso'
+  },
+
+  {
+    id: 2,
+    title: 'Lista SQL',
+    description: 'Resolver exercícios SQL',
+    subject: 'Banco de Dados',
+    date: '2026-05-18',
+    priority: 'Média',
+    status: 'Não iniciado'
+  }
+];
+
+// ===============================
+// LOCAL STORAGE
+// ===============================
+
+let materials =
+  JSON.parse(localStorage.getItem('studyhub_materials'))
+  || defaultMaterials;
+
+let tasks =
+  JSON.parse(localStorage.getItem('studyhub_tasks'))
+  || defaultTasks;
+
+// ===============================
+// SALVAR DADOS
+// ===============================
+
+function saveData() {
+
+  localStorage.setItem(
+    'studyhub_materials',
+    JSON.stringify(materials)
+  );
+
+  localStorage.setItem(
+    'studyhub_tasks',
+    JSON.stringify(tasks)
+  );
+}
+
+// ===============================
+// NAVEGAÇÃO
+// ===============================
+
+navButtons.forEach(button => {
+
+  button.addEventListener('click', () => {
+
+    navButtons.forEach(btn =>
+      btn.classList.remove('active')
+    );
+
+    button.classList.add('active');
+
+    pages.forEach(page =>
+      page.classList.remove('active-page')
+    );
+
+    const pageId = button.dataset.page;
+
+    document.getElementById(pageId)
+      .classList.add('active-page');
+  });
+});
+
+// ===============================
+// RENDERIZAR MATERIAIS
+// ===============================
+
+function renderMaterials() {
+
+  materialsList.innerHTML = '';
+
+  materials.forEach(material => {
+
+    const materialCard = document.createElement('div');
+
+    materialCard.className = 'material-card';
+
+    materialCard.innerHTML = `
+      <h3>${material.title}</h3>
+
+      <p><strong>Disciplina:</strong> ${material.subject}</p>
+
+      <p><strong>Tipo:</strong> ${material.type}</p>
+
+      <p><strong>Criado:</strong> ${material.createdAt}</p>
+
+      <div>
+        ${material.tags.map(tag =>
+          `<span class="tag">${tag}</span>`
+        ).join('')}
+      </div>
+
+      <p style="margin-top:15px;">
+        ${material.favorite ? '⭐ Favorito' : ''}
+      </p>
+
+      <button
+        onclick="deleteMaterial(${material.id})"
+        class="delete-btn"
+        style="
+          margin-top:15px;
+          background:#ef4444;
+          color:white;
+          border:none;
+          padding:10px 15px;
+          border-radius:12px;
+          cursor:pointer;
+        "
+      >
+        Excluir
+      </button>
+    `;
+
+    materialsList.appendChild(materialCard);
+  });
+
+  updateDashboard();
+  renderFavorites();
+}
+
+// ===============================
+// RENDERIZAR TRABALHOS
+// ===============================
+
+function renderTasks() {
+
+  tasksList.innerHTML = '';
+
+  tasks.forEach(task => {
+
+    const taskCard = document.createElement('div');
+
+    taskCard.className = 'task-card';
+
+    taskCard.innerHTML = `
+      <h3>${task.title}</h3>
+
+      <p>${task.description}</p>
+
+      <p><strong>Disciplina:</strong> ${task.subject}</p>
+
+      <p><strong>Entrega:</strong> ${task.date}</p>
+
+      <p><strong>Status:</strong> ${task.status}</p>
+
+      <span class="priority ${task.priority.toLowerCase()}">
+        ${task.priority}
+      </span>
+
+      <button
+        onclick="deleteTask(${task.id})"
+        style="
+          margin-top:20px;
+          background:#ef4444;
+          color:white;
+          border:none;
+          padding:10px 15px;
+          border-radius:12px;
+          cursor:pointer;
+          display:block;
+        "
+      >
+        Excluir
+      </button>
+    `;
+
+    tasksList.appendChild(taskCard);
+  });
+
+  updateDashboard();
+}
+
+// ===============================
+// FAVORITOS
+// ===============================
+
+function renderFavorites() {
+
+  favoritesList.innerHTML = '';
+
+  const favorites = materials.filter(
+    material => material.favorite
+  );
+
+  favorites.forEach(material => {
+
+    favoritesList.innerHTML += `
+      <div class="material-card">
+
+        <h3>${material.title}</h3>
+
+        <p><strong>Disciplina:</strong>
+        ${material.subject}</p>
+
+        <p><strong>Tipo:</strong>
+        ${material.type}</p>
+
+        <div>
+          ${material.tags.map(tag =>
+            `<span class="tag">${tag}</span>`
+          ).join('')}
+        </div>
+
+      </div>
+    `;
+  });
+}
+
+// ===============================
+// DASHBOARD
+// ===============================
+
+function updateDashboard() {
+
+  materialsCount.textContent = materials.length;
+
+  tasksCount.textContent = tasks.length;
+
+  const urgentTasks = tasks.filter(
+    task => task.priority === 'Alta'
+  );
+
+  urgentCount.textContent = urgentTasks.length;
+
+  const favoriteItems = materials.filter(
+    material => material.favorite
+  );
+
+  favoriteCount.textContent = favoriteItems.length;
+
+  renderUpcomingTasks();
+  renderFavoriteDashboard();
+}
+
+// ===============================
+// PRÓXIMOS TRABALHOS
+// ===============================
+
+function renderUpcomingTasks() {
+
+  upcomingTasks.innerHTML = '';
+
+  tasks.slice(0, 5).forEach(task => {
+
+    upcomingTasks.innerHTML += `
+      <div class="item">
+
+        <strong>${task.title}</strong>
+
+        <p>${task.subject}</p>
+
+        <p>${task.date}</p>
+
+      </div>
+    `;
+  });
+}
+
+// ===============================
+// FAVORITOS DASHBOARD
+// ===============================
+
+function renderFavoriteDashboard() {
+
+  favoriteMaterials.innerHTML = '';
+
+  const favorites = materials.filter(
+    material => material.favorite
+  );
+
+  favorites.forEach(material => {
+
+    favoriteMaterials.innerHTML += `
+      <div class="item">
+
+        <strong>${material.title}</strong>
+
+        <p>${material.subject}</p>
+
+      </div>
+    `;
+  });
+}
+
+// ===============================
+// ABRIR MODAIS
+// ===============================
+
+document.getElementById('open-material-modal')
+.addEventListener('click', () => {
+
+  materialModal.style.display = 'flex';
+});
+
+document.getElementById('open-task-modal')
+.addEventListener('click', () => {
+
+  taskModal.style.display = 'flex';
+});
+
+// ===============================
+// FECHAR MODAL
+// ===============================
+
+window.addEventListener('click', event => {
+
+  if(event.target === materialModal) {
+
+    materialModal.style.display = 'none';
+  }
+
+  if(event.target === taskModal) {
+
+    taskModal.style.display = 'none';
+  }
+});
+
+// ===============================
+// SALVAR MATERIAL
+// ===============================
+
+document.getElementById('save-material')
+.addEventListener('click', () => {
+
+  const title =
+    document.getElementById('material-title').value;
+
+  const subject =
+    document.getElementById('material-subject').value;
+
+  const type =
+    document.getElementById('material-type').value;
+
+  const tags =
+    document.getElementById('material-tags')
+      .value
+      .split(',');
+
+  const favorite =
+    document.getElementById('material-favorite')
+      .checked;
+
+  if(title === '' || subject === '') {
+
+    alert('Preencha todos os campos.');
+
+    return;
+  }
+
+  const newMaterial = {
+
+    id: Date.now(),
+
+    title,
+
+    subject,
+
+    type,
+
+    tags,
+
+    favorite,
+
+    createdAt: new Date().toLocaleDateString()
+  };
+
+  materials.push(newMaterial);
+
+  saveData();
+
+  renderMaterials();
+
+  materialModal.style.display = 'none';
+
+  clearMaterialFields();
+});
+
+// ===============================
+// LIMPAR CAMPOS MATERIAL
+// ===============================
+
+function clearMaterialFields() {
+
+  document.getElementById('material-title').value = '';
+
+  document.getElementById('material-subject').value = '';
+
+  document.getElementById('material-tags').value = '';
+
+  document.getElementById('material-favorite').checked = false;
+}
+
+// ===============================
+// SALVAR TRABALHO
+// ===============================
+
+document.getElementById('save-task')
+.addEventListener('click', () => {
+
+  const title =
+    document.getElementById('task-title').value;
+
+  const description =
+    document.getElementById('task-description').value;
+
+  const subject =
+    document.getElementById('task-subject').value;
+
+  const date =
+    document.getElementById('task-date').value;
+
+  const priority =
+    document.getElementById('task-priority').value;
+
+  const status =
+    document.getElementById('task-status').value;
+
+  if(title === '' || subject === '') {
+
+    alert('Preencha os campos.');
+
+    return;
+  }
+
+  const newTask = {
+
+    id: Date.now(),
+
+    title,
+
+    description,
+
+    subject,
+
+    date,
+
+    priority,
+
+    status
+  };
+
+  tasks.push(newTask);
+
+  saveData();
+
+  renderTasks();
+
+  taskModal.style.display = 'none';
+
+  clearTaskFields();
+});
+
+// ===============================
+// LIMPAR CAMPOS TRABALHO
+// ===============================
+
+function clearTaskFields() {
+
+  document.getElementById('task-title').value = '';
+
+  document.getElementById('task-description').value = '';
+
+  document.getElementById('task-subject').value = '';
+
+  document.getElementById('task-date').value = '';
+}
+
+// ===============================
+// EXCLUIR MATERIAL
+// ===============================
+
+function deleteMaterial(id) {
+
+  const confirmDelete =
+    confirm('Deseja excluir este material?');
+
+  if(!confirmDelete) return;
+
+  materials = materials.filter(
+    material => material.id !== id
+  );
+
+  saveData();
+
+  renderMaterials();
+}
+
+// ===============================
+// EXCLUIR TRABALHO
+// ===============================
+
+function deleteTask(id) {
+
+  const confirmDelete =
+    confirm('Deseja excluir este trabalho?');
+
+  if(!confirmDelete) return;
+
+  tasks = tasks.filter(
+    task => task.id !== id
+  );
+
+  saveData();
+
+  renderTasks();
+}
+
+// ===============================
+// BUSCA
+// ===============================
+
+searchInput.addEventListener('input', () => {
+
+  const value =
+    searchInput.value.toLowerCase();
+
+  document.querySelectorAll(
+    '.material-card, .task-card'
+  ).forEach(card => {
+
+    const content =
+      card.innerText.toLowerCase();
+
+    if(content.includes(value)) {
+
+      card.style.display = 'block';
+
+    } else {
+
+      card.style.display = 'none';
+    }
+  });
+});
+
+// ===============================
+// ALERTA DE PRAZO
+// ===============================
+
+function checkDeadlines() {
+
+  const today = new Date();
+
+  tasks.forEach(task => {
+
+    const taskDate = new Date(task.date);
+
+    const diff =
+      Math.ceil(
+        (taskDate - today) / (1000 * 60 * 60 * 24)
+      );
+
+    if(diff <= 3 && diff >= 0) {
+
+      console.log(
+        `⚠️ Trabalho próximo:
+        ${task.title}`
+      );
+    }
+  });
+}
+
+// ===============================
+// INICIALIZAÇÃO
+// ===============================
+
+function initializeApp() {
+
+  renderMaterials();
+
+  renderTasks();
+
+  renderFavorites();
+
+  updateDashboard();
+
+  checkDeadlines();
+}
+
+initializeApp();</script>
+</body>
+</html>
